@@ -20,3 +20,31 @@ This function determines if the address is in the cache, and will call the appro
 
 ## Finalize
 This function prints out all the summary statistics, including Cache performance and Pipeline performance. For the cache performance part, the useful statistics are number of Cache access, number of cache misses, number of cache hits, and cache miss rate. 
+
+
+
+
+# Pipelining
+
+In the pipelining simulator, the functions that are involved are
+
+1. Parsing the Instruction
+2. Pushing the Pipeline Stage
+3. Processing the Pipeline Rtype
+
+## Parsing the Instruction
+
+The given code prases the instruction, finding out whether the instruction is already in the cache or not.
+
+## Pushing the Pipeline Stage
+
+This function is reponsible for moving instructions along in the pipline, and determing if stalls or forwarding is needed for the program to pipeline successfully.
+
+
+In the case that the instruction is a branch, determine if next the next instruction loaded is the next instruction and branch predict if not.
+
+If the branch prediction was wrong, add a cycle and then push the stages through and add a nop.
+
+If the branch was correct, then nothing else happens.
+
+
