@@ -375,6 +375,8 @@ void iplc_sim_push_pipeline_stage()
         if(pipeline[FETCH].instruction_address!=0 && (pipeline[FETCH].instruction_address - 
         pipeline[DECODE].instruction_address != 4)){
             branch_taken = 1;
+            printf("DEBUG: Branch Taken: FETCH addr = 0x%x, DECODE instr addr = 0x%x \n", 
+                pipeline[FETCH].instruction_address, pipeline[DECODE].instruction_address);
         }
         //if the branch is not correctly predicted, add one cycle, push stages through (up to decode, which stays the same), and insert a nop
         if(pipeline[FETCH].instruction_address!=0 && branch_taken != branch_predict_taken){
@@ -390,7 +392,6 @@ void iplc_sim_push_pipeline_stage()
         } else if(pipeline[FETCH].instruction_address != 0){ 
             correct_branch_predictions++;
         }
-
     }
 	
 	/* 3. Check for LW delays due to use in ALU stage and if data hit/miss
