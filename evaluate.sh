@@ -1,6 +1,7 @@
 #! /bin/sh
 
-for cache_size in 1 ... 4
+mkdir comparisons
+for cache_size in 1 2 3 4
 do 
 	for block_size in 1 2 4
 	do
@@ -13,3 +14,7 @@ do
 		done
 	done
 done
+
+grep -rnw 'comparisons' -e 'Total Cycles is' > cycles.txt
+
+sort -g -k 5 cycles.txt
