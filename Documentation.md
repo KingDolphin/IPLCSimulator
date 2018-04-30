@@ -34,17 +34,32 @@ In the pipelining simulator, the functions that are involved are
 
 ## Parsing the Instruction
 
-The given code prases the instruction, finding out whether the instruction is already in the cache or not.
+The given code parses the instruction, finding out whether the instruction is already in the cache or not.
 
 ## Pushing the Pipeline Stage
 
-This function is reponsible for moving instructions along in the pipline, and determing if stalls or forwarding is needed for the program to pipeline successfully.
+This function is reponsible for moving instructions along in the pipline, and determining if stalls or forwarding is needed for the program to pipeline successfully.
 
-
+### 2. Branch Prediction
 In the case that the instruction is a branch, determine if next the next instruction loaded is the next instruction and branch predict if not.
 
 If the branch prediction was wrong, add a cycle and then push the stages through and add a nop.
 
 If the branch was correct, then nothing else happens.
 
+### 3. LW Delays
+First, check if the data is in the cache. We have a hit if so; otherwise, we have a miss, and the pipeline is delayed by `CACHE_MISS_DELAY`s. 
 
+Next, check if the ALU stage is r-type. If so, check if one of the first two ALU registers mach the MEM destination register. In that case, write the data from the MEM stage to the WRITEBACK stage, and reset MEM to nop. 
+
+### 4. SW Delays
+First, check if the data is in the cache. If a miss, delay by `CACHE_MISS_DELAY`.
+
+### 5. Normal Processing
+Increment pipeline cycles, representing normal processing.
+
+### 6. Push Stages
+Copy data in each stage to successive stages.
+
+### 7. Reset FETCH
+Insert a nop into the FETCH stage.
