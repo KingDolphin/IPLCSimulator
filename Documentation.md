@@ -63,3 +63,6 @@ Copy data in each stage to successive stages.
 
 ### 7. Reset FETCH
 Insert a nop into the FETCH stage.
+
+
+![Results](results.png)
