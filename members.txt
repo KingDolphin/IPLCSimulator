@@ -1,0 +1,11 @@
+Manager: Leon Montealegre
+
+Coders:
+Joseph Gonzales
+Tim Clough
+Rylan O'Connell (Star)
+
+Documenters:
+Sean Dowd
+Andrew Qu
+Victor Nazzaro
